@@ -63,6 +63,17 @@ services:
         source: listmonk-data
         target: /var/lib/postgresql/data
 
+  # Mailpit - Email testing tool (catches all emails)
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: listmonk_mailpit
+    restart: unless-stopped
+    ports:
+      - "8025:8025"                                           # Web UI to view emails
+      - "1025:1025"                                           # SMTP server
+    networks:
+      - listmonk
+
 networks:
   listmonk:
 
